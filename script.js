@@ -1,10 +1,4 @@
 
-// =====================
-// START SEQUENCE (IMMEDIATE REVEAL)
-// =====================
-// =====================
-// START SEQUENCE WITH 3-LINE STEP TIMING
-// =====================
 function startNetflix() {
   const music = document.getElementById("bgMusic");
   const hero = document.querySelector(".hero");
@@ -14,7 +8,6 @@ function startNetflix() {
   const l2 = document.getElementById("line2");
   const l3 = document.getElementById("line3");
 
-  // 1. Hide the initial landing hero instantly
   hero.style.transition = "0.8s ease";
   hero.style.opacity = "0";
 
@@ -22,26 +15,22 @@ function startNetflix() {
     hero.style.display = "none";
     
     if (interimStage) {
-      // 2. Open the black container stage
       interimStage.classList.add("show");
 
-      // --- LINE 1 TIMING ---
-      setTimeout(() => { l1.classList.add("visible"); }, 200);       // Fade Line 1 In
-      setTimeout(() => { l1.classList.remove("visible"); }, 2500);   // Fade Line 1 Out
+      setTimeout(() => { l1.classList.add("visible"); }, 200);      
+      setTimeout(() => { l1.classList.remove("visible"); }, 2500);  
+      
+      setTimeout(() => { l2.classList.add("visible"); }, 3500);      
+      setTimeout(() => { l2.classList.remove("visible"); }, 5800);   
 
-      // --- LINE 2 TIMING ---
-      setTimeout(() => { l2.classList.add("visible"); }, 3500);      // Fade Line 2 In
-      setTimeout(() => { l2.classList.remove("visible"); }, 5800);   // Fade Line 2 Out
+      setTimeout(() => { l3.classList.add("visible"); }, 6800);      
+      setTimeout(() => { l3.classList.remove("visible"); }, 9100);   
 
-      // --- LINE 3 TIMING ---
-      setTimeout(() => { l3.classList.add("visible"); }, 6800);      // Fade Line 3 In
-      setTimeout(() => { l3.classList.remove("visible"); }, 9100);   // Fade Line 3 Out
 
-      // --- EXIT SEQUENCE ---
       setTimeout(() => {
-        interimStage.classList.remove("show"); // Drop the stage completely
+        interimStage.classList.remove("show"); 
         setTimeout(() => {
-          startMemoryReveal(); // Reveal "Episodes of Us" main data pipelines
+          startMemoryReveal(); 
         }, 1000);
       }, 10000);
 
@@ -50,7 +39,6 @@ function startNetflix() {
     }
   }, 800);
 
-  // Soft audio soundtrack fade-in handler
   if (music) {
     music.volume = 0;
     music.play().catch(() => {});
@@ -67,10 +55,6 @@ function startNetflix() {
   }
 }
 
-
-// =====================
-// CINEMATIC MEMORY REVEAL
-// =====================
 function startMemoryReveal() {
   const sections = document.querySelectorAll(".section");
   let delay = 0;
@@ -89,9 +73,6 @@ function startMemoryReveal() {
   });
 }
 
-// =====================
-// STAR CONSTELLATIONS
-// =====================
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
 
@@ -147,24 +128,17 @@ window.addEventListener('resize', () => {
   canvas.height = window.innerHeight;
 });
 
-// =====================
-// INTERACTIVE NETFLIX EPISODES LOGIC (TOGGLE MODE)
-// =====================
 function setActiveEpisode(selectedCard) {
   const viewer = document.getElementById("episodeViewer");
   const allCards = document.querySelectorAll(".episode-card");
-  
-  // Check if the card you just clicked is already active
+
   const isAlreadyActive = selectedCard.classList.contains("active");
 
-  // 1. Clear out active styling across all cards to ensure only one is open at a time
   allCards.forEach(card => card.classList.remove("active"));
 
-  // 2. If it wasn't active, open it. If it was active, it stays closed!
   if (!isAlreadyActive) {
     selectedCard.classList.add("active");
 
-    // 3. Smoothly fade and swap the photo viewer to match the open episode
     if (viewer) {
       viewer.classList.add("swapping");
 
@@ -187,7 +161,6 @@ function startNetflix() {
   const l2 = document.getElementById("line2");
   const l3 = document.getElementById("line3");
 
-  // 1. Hide the initial landing hero instantly
   hero.style.transition = "0.8s ease";
   hero.style.opacity = "0";
 
@@ -195,26 +168,21 @@ function startNetflix() {
     hero.style.display = "none";
     
     if (interimStage) {
-      // 2. Open the black container stage
       interimStage.classList.add("show");
 
-      // --- LINE 1 TIMING ---
-      setTimeout(() => { l1.classList.add("visible"); }, 200);       // Fade Line 1 In
-      setTimeout(() => { l1.classList.remove("visible"); }, 2500);   // Fade Line 1 Out
+      setTimeout(() => { l1.classList.add("visible"); }, 200);       
+      setTimeout(() => { l1.classList.remove("visible"); }, 2500);   
 
-      // --- LINE 2 TIMING ---
-      setTimeout(() => { l2.classList.add("visible"); }, 3500);      // Fade Line 2 In
-      setTimeout(() => { l2.classList.remove("visible"); }, 5800);   // Fade Line 2 Out
+      setTimeout(() => { l2.classList.add("visible"); }, 3500);  
+      setTimeout(() => { l2.classList.remove("visible"); }, 5800);
 
-      // --- LINE 3 TIMING ---
-      setTimeout(() => { l3.classList.add("visible"); }, 6800);      // Fade Line 3 In
-      setTimeout(() => { l3.classList.remove("visible"); }, 9100);   // Fade Line 3 Out
+      setTimeout(() => { l3.classList.add("visible"); }, 6800);      
+      setTimeout(() => { l3.classList.remove("visible"); }, 9100);   
 
-      // --- EXIT SEQUENCE ---
       setTimeout(() => {
-        interimStage.classList.remove("show"); // Drop the stage completely
+        interimStage.classList.remove("show"); 
         setTimeout(() => {
-          startMemoryReveal(); // Reveal "Episodes of Us" main data pipelines
+          startMemoryReveal();
         }, 1000);
       }, 10000);
 
@@ -223,7 +191,6 @@ function startNetflix() {
     }
   }, 800);
 
-  // Soft audio soundtrack fade-in handler
   if (music) {
     music.volume = 0;
     music.play().catch(() => {});
@@ -241,9 +208,6 @@ function startNetflix() {
 }
 
 
-// =====================
-// CINEMATIC MEMORY REVEAL
-// =====================
 function startMemoryReveal() {
   const sections = document.querySelectorAll(".section");
   let delay = 0;
@@ -262,9 +226,6 @@ function startMemoryReveal() {
   });
 }
 
-// =====================
-// STAR CONSTELLATIONS
-// =====================
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
 
@@ -320,24 +281,17 @@ window.addEventListener('resize', () => {
   canvas.height = window.innerHeight;
 });
 
-// =====================
-// INTERACTIVE NETFLIX EPISODES LOGIC (TOGGLE MODE)
-// =====================
 function setActiveEpisode(selectedCard) {
   const viewer = document.getElementById("episodeViewer");
   const allCards = document.querySelectorAll(".episode-card");
   
-  // Check if the card you just clicked is already active
   const isAlreadyActive = selectedCard.classList.contains("active");
 
-  // 1. Clear out active styling across all cards to ensure only one is open at a time
   allCards.forEach(card => card.classList.remove("active"));
 
-  // 2. If it wasn't active, open it. If it was active, it stays closed!
   if (!isAlreadyActive) {
     selectedCard.classList.add("active");
 
-    // 3. Smoothly fade and swap the photo viewer to match the open episode
     if (viewer) {
       viewer.classList.add("swapping");
 

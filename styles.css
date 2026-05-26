@@ -39,9 +39,6 @@ body::after {
   50% { opacity: 0.4; }
 }
 
-/* ==========================================
-   SECTIONS & ACCENT TEXT
-   ========================================== */
 .section {
   min-height: 100vh;
   padding: 80px 20px;
@@ -79,9 +76,6 @@ h3 {
   font-size: 4rem;
 }
 
-/* ==========================================
-   FADE & TRANSITION ANIMATIONS
-   ========================================== */
 .fade {
   opacity: 0;
   transform: translateY(30px);
@@ -98,7 +92,6 @@ h3 {
   }
 }
 
-/* INTERACTION BUTTON */
 button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -110,9 +103,6 @@ button {
   font-weight: bold;
 }
 
-/* ==========================================
-   OUR STORY NARRATIVE HEADER
-   ========================================== */
 .story h2 {
   font-size: 3rem;
   margin-bottom: 30px;
@@ -128,9 +118,6 @@ button {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* ==========================================
-   NETFLIX ENTER INTRO SCREEN
-   ========================================== */
 #netflixIntro {
   position: fixed;
   inset: 0;
@@ -168,7 +155,6 @@ button {
   100% { opacity: 0; visibility: hidden; }
 }
 
-/* MEMORY REVEAL TRANSITION TRIGGER */
 .memory {
   opacity: 0;
   transform: translateY(40px) scale(0.95);
@@ -180,9 +166,6 @@ button {
   transform: translateY(0) scale(1);
 }
 
-/* ==========================================
-   SPLIT 1:1 PHOTO & INTERACTIVE EPISODES
-   ========================================== */
 .split-netflix-container {
   display: grid;
   grid-template-columns: 400px 1fr;
@@ -193,7 +176,6 @@ button {
   align-items: start;
 }
 
-/* LEFT COLUMN: FIXED POSITION PHOTO PANEL */
 .photo-display-panel {
   width: 400px;
   height: 400px;
@@ -213,13 +195,11 @@ button {
   transition: opacity 0.4s ease, transform 0.6s ease;
 }
 
-/* Photo Swap Animation Frame Target */
 .photo-display-panel img.swapping {
   opacity: 0;
   transform: scale(0.97);
 }
 
-/* RIGHT COLUMN: SCROLLABLE LIST ROW STRUCTURE */
 .episodes-column {
   display: flex;
   flex-direction: column;
@@ -241,7 +221,6 @@ button {
   border-color: rgba(168, 230, 207, 0.4);
 }
 
-/* Card Selection Active Colors */
 .episode-card.active {
   background: rgba(35, 35, 35, 0.95);
   border-color: #a8e6cf;
@@ -313,9 +292,6 @@ button {
   color: #a8e6cf;
 }
 
-/* ==========================================
-   RESPONSIVE BREAKPOINT FOR TABLETS & PHONES
-   ========================================== */
 @media (max-width: 850px) {
   .split-netflix-container {
     grid-template-columns: 1fr;
@@ -330,9 +306,6 @@ button {
   }
 }
 
-/* ==========================================
-   UPDATED: 3-LINE SEQUENTIAL TRANSITION STYLES
-   ========================================== */
 #interimMessageStage {
   position: fixed;
   inset: 0;
@@ -351,9 +324,8 @@ button {
   visibility: visible;
 }
 
-/* Base style for each line */
 .interim-line {
-  position: absolute; /* Stacked directly on top of each other structurally */
+  position: absolute;
   font-size: 2rem;
   font-style: italic;
   color: #ffd1dc;
@@ -363,21 +335,16 @@ button {
   line-height: 1.6;
   text-shadow: 0 0 15px rgba(255, 209, 220, 0.3);
   
-  /* Hidden by default */
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Active transition handles */
 .interim-line.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ==========================================
-   THE JOURNAL / MEMOIR SCREEN DESIGN
-   ========================================== */
 .final-letter-stage {
   min-height: 100vh;
   padding: 120px 20px;
@@ -393,7 +360,6 @@ button {
   text-align: left;
   position: relative;
   padding-left: 30px;
-  /* An elegant vertical timeline line anchor running down the left side */
   border-left: 2px dashed rgba(255, 209, 220, 0.2); 
 }
 
@@ -405,7 +371,7 @@ button {
   font-family: monospace;
   font-size: 0.85rem;
   letter-spacing: 4px;
-  color: #a8e6cf; /* Mint green accent */
+  color: #a8e6cf;
   text-transform: uppercase;
   display: block;
   margin-bottom: 12px;
@@ -417,7 +383,7 @@ button {
   font-size: 2.2rem !important;
   font-style: italic;
   font-weight: 400;
-  color: #ffd1dc !important; /* Soft rose */
+  color: #ffd1dc !important;
   line-height: 1.3 !important;
   text-align: left !important;
   margin: 0 !important;
@@ -433,7 +399,6 @@ button {
   letter-spacing: 0.2px;
 }
 
-/* Emphasizes the first letter slightly for an editorial look */
 .journal-body p:first-of-type::first-letter {
   font-size: 2.2rem;
   font-weight: bold;
@@ -465,7 +430,6 @@ button {
   margin: 0 !important;
 }
 
-/* Mobile Responsiveness tuning */
 @media (max-width: 600px) {
   .journal-canvas {
     padding-left: 20px;
@@ -519,9 +483,6 @@ body::after {
   50% { opacity: 0.4; }
 }
 
-/* ==========================================
-   SECTIONS & ACCENT TEXT
-   ========================================== */
 .section {
   min-height: 100vh;
   padding: 80px 20px;
@@ -559,17 +520,14 @@ h3 {
   font-size: 4rem;
 }
 
-/* ==========================================
-   FADE & TRANSITION ANIMATIONS
-   ========================================== */
 .fade {
   opacity: 0;
   transform: translateY(30px);
   animation: fadeUp 1s forwards;
 }
 
-.delay { animation-delay: 0.5s; }
-.delay2 { animation-delay: 1s; }
+.delay { animation-delay: 0.3s; }
+.delay2 { animation-delay: 0.8s; }
 
 @keyframes fadeUp {
   to {
@@ -578,7 +536,6 @@ h3 {
   }
 }
 
-/* INTERACTION BUTTON */
 button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -590,9 +547,6 @@ button {
   font-weight: bold;
 }
 
-/* ==========================================
-   OUR STORY NARRATIVE HEADER
-   ========================================== */
 .story h2 {
   font-size: 3rem;
   margin-bottom: 30px;
@@ -608,9 +562,6 @@ button {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* ==========================================
-   NETFLIX ENTER INTRO SCREEN
-   ========================================== */
 #netflixIntro {
   position: fixed;
   inset: 0;
@@ -619,7 +570,7 @@ button {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  animation: introOut 5s forwards;
+  animation: introOut 7s forwards;
 }
 
 .logo {
@@ -648,7 +599,6 @@ button {
   100% { opacity: 0; visibility: hidden; }
 }
 
-/* MEMORY REVEAL TRANSITION TRIGGER */
 .memory {
   opacity: 0;
   transform: translateY(40px) scale(0.95);
@@ -660,9 +610,6 @@ button {
   transform: translateY(0) scale(1);
 }
 
-/* ==========================================
-   SPLIT 1:1 PHOTO & INTERACTIVE EPISODES
-   ========================================== */
 .split-netflix-container {
   display: grid;
   grid-template-columns: 400px 1fr;
@@ -673,7 +620,6 @@ button {
   align-items: start;
 }
 
-/* LEFT COLUMN: FIXED POSITION PHOTO PANEL */
 .photo-display-panel {
   width: 400px;
   height: 400px;
@@ -693,13 +639,11 @@ button {
   transition: opacity 0.4s ease, transform 0.6s ease;
 }
 
-/* Photo Swap Animation Frame Target */
 .photo-display-panel img.swapping {
   opacity: 0;
   transform: scale(0.97);
 }
 
-/* RIGHT COLUMN: SCROLLABLE LIST ROW STRUCTURE */
 .episodes-column {
   display: flex;
   flex-direction: column;
@@ -721,7 +665,6 @@ button {
   border-color: rgba(168, 230, 207, 0.4);
 }
 
-/* Card Selection Active Colors */
 .episode-card.active {
   background: rgba(35, 35, 35, 0.95);
   border-color: #a8e6cf;
@@ -793,9 +736,6 @@ button {
   color: #a8e6cf;
 }
 
-/* ==========================================
-   RESPONSIVE BREAKPOINT FOR TABLETS & PHONES
-   ========================================== */
 @media (max-width: 850px) {
   .split-netflix-container {
     grid-template-columns: 1fr;
@@ -810,9 +750,6 @@ button {
   }
 }
 
-/* ==========================================
-   UPDATED: 3-LINE SEQUENTIAL TRANSITION STYLES
-   ========================================== */
 #interimMessageStage {
   position: fixed;
   inset: 0;
@@ -831,9 +768,8 @@ button {
   visibility: visible;
 }
 
-/* Base style for each line */
 .interim-line {
-  position: absolute; /* Stacked directly on top of each other structurally */
+  position: absolute; 
   font-size: 2rem;
   font-style: italic;
   color: #ffd1dc;
@@ -843,21 +779,17 @@ button {
   line-height: 1.6;
   text-shadow: 0 0 15px rgba(255, 209, 220, 0.3);
   
-  /* Hidden by default */
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Active transition handles */
+
 .interim-line.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ==========================================
-   THE JOURNAL / MEMOIR SCREEN DESIGN
-   ========================================== */
 .final-letter-stage {
   min-height: 100vh;
   padding: 120px 20px;
@@ -873,7 +805,6 @@ button {
   text-align: left;
   position: relative;
   padding-left: 30px;
-  /* An elegant vertical timeline line anchor running down the left side */
   border-left: 2px dashed rgba(255, 209, 220, 0.2); 
 }
 
@@ -885,7 +816,7 @@ button {
   font-family: monospace;
   font-size: 0.85rem;
   letter-spacing: 4px;
-  color: #a8e6cf; /* Mint green accent */
+  color: #a8e6cf; 
   text-transform: uppercase;
   display: block;
   margin-bottom: 12px;
@@ -897,7 +828,7 @@ button {
   font-size: 2.2rem !important;
   font-style: italic;
   font-weight: 400;
-  color: #ffd1dc !important; /* Soft rose */
+  color: #ffd1dc !important;
   line-height: 1.3 !important;
   text-align: left !important;
   margin: 0 !important;
@@ -913,7 +844,6 @@ button {
   letter-spacing: 0.2px;
 }
 
-/* Emphasizes the first letter slightly for an editorial look */
 .journal-body p:first-of-type::first-letter {
   font-size: 2.2rem;
   font-weight: bold;
@@ -945,7 +875,6 @@ button {
   margin: 0 !important;
 }
 
-/* Mobile Responsiveness tuning */
 @media (max-width: 600px) {
   .journal-canvas {
     padding-left: 20px;

@@ -150,33 +150,31 @@ window.addEventListener('resize', () => {
 // =====================
 // INTERACTIVE NETFLIX EPISODES LOGIC (TOGGLE MODE)
 // =====================
-function setActiveEpisode(selectedCard) {
+function setActiveEpisode(selectedCard, e) {
+  // Prevent any weird browser default behaviors on touch
+  if (e) e.preventDefault(); 
+  
   const viewer = document.getElementById("episodeViewer");
   const allCards = document.querySelectorAll(".episode-card");
   
-  // Check if the card you just clicked is already active
   const isAlreadyActive = selectedCard.classList.contains("active");
 
-  // 1. Clear out active styling across all cards to ensure only one is open at a time
   allCards.forEach(card => card.classList.remove("active"));
 
-  // 2. If it wasn't active, open it. If it was active, it stays closed!
   if (!isAlreadyActive) {
     selectedCard.classList.add("active");
 
-    // 3. Smoothly fade and swap the photo viewer to match the open episode
     if (viewer) {
       viewer.classList.add("swapping");
-
       setTimeout(() => {
         const targetPhoto = selectedCard.getAttribute("data-photo");
-        if (targetPhoto) {
-          viewer.src = targetPhoto;
-        }
+        // Force the browser to refresh the image source
+        viewer.src = targetPhoto + "?t=" + new Date().getTime(); 
         viewer.classList.remove("swapping");
       }, 400);
     }
   }
+
 
 function startNetflix() {
   const music = document.getElementById("bgMusic");

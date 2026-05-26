@@ -1,0 +1,961 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial";
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: Arial;
+  background: radial-gradient(circle at top, #a8e6cf22, transparent 50%),
+              radial-gradient(circle at bottom, #ffd1dc22, transparent 50%),
+              #0b0b0b;
+}
+
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 60%);
+  animation: pulse 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+/* ==========================================
+   SECTIONS & ACCENT TEXT
+   ========================================== */
+.section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.section:not(.hero) {
+  display: none;
+}
+
+.section.memory {
+  display: flex;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #a8e6cf;
+}
+
+h2 {
+  color: #ffd1dc;
+  margin-bottom: 20px;
+  font-size: 5rem;
+}
+
+h3 {
+  color: #ffd1dc;
+  margin-bottom: 20px;
+  font-size: 4rem;
+}
+
+/* ==========================================
+   FADE & TRANSITION ANIMATIONS
+   ========================================== */
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s forwards;
+}
+
+.delay { animation-delay: 0.5s; }
+.delay2 { animation-delay: 1s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* INTERACTION BUTTON */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #a8e6cf;
+  color: black;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* ==========================================
+   OUR STORY NARRATIVE HEADER
+   ========================================== */
+.story h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.story p {
+  font-size: 1.35rem;
+  line-height: 1.8;
+  max-width: 750px;
+  margin: 0 auto 25px auto;
+  color: #f5f5f5;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================
+   NETFLIX ENTER INTRO SCREEN
+   ========================================== */
+#netflixIntro {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: introOut 5s forwards;
+}
+
+.logo {
+  font-size: 4rem;
+  letter-spacing: 12px;
+  color: #a8e6cf;
+  text-shadow: 0 0 20px rgba(168,230,207,0.4);
+  animation: logoZoom 2.5s ease-out;
+}
+
+@keyframes logoZoom {
+  from {
+    transform: scale(1.4);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes introOut {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* MEMORY REVEAL TRANSITION TRIGGER */
+.memory {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: 1.2s ease;
+}
+
+.memory.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================
+   SPLIT 1:1 PHOTO & INTERACTIVE EPISODES
+   ========================================== */
+.split-netflix-container {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 40px;
+  width: 100%;
+  max-width: 1050px;
+  margin: 30px auto;
+  align-items: start;
+}
+
+/* LEFT COLUMN: FIXED POSITION PHOTO PANEL */
+.photo-display-panel {
+  width: 400px;
+  height: 400px;
+  position: sticky;
+  top: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+}
+
+.photo-display-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+/* Photo Swap Animation Frame Target */
+.photo-display-panel img.swapping {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+/* RIGHT COLUMN: SCROLLABLE LIST ROW STRUCTURE */
+.episodes-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.episode-card {
+  background: rgba(20, 20, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.episode-card:hover {
+  background: rgba(32, 32, 32, 0.9);
+  border-color: rgba(168, 230, 207, 0.4);
+}
+
+/* Card Selection Active Colors */
+.episode-card.active {
+  background: rgba(35, 35, 35, 0.95);
+  border-color: #a8e6cf;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.ep-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.ep-number {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease;
+}
+
+.episode-card.active .ep-number {
+  color: #a8e6cf;
+}
+
+.ep-title-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ep-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.ep-date {
+  font-size: 0.85rem;
+  color: #ffd1dc;
+  margin-top: 4px;
+}
+
+.ep-arrow {
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+  transition: transform 0.4s ease;
+}
+
+.ep-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.ep-body p {
+  padding: 0 20px 20px 64px !important;
+  color: #b5b5b5 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+}
+
+.episode-card.active .ep-body {
+  max-height: 300px;
+}
+
+.episode-card.active .ep-arrow {
+  transform: rotate(180deg);
+  color: #a8e6cf;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINT FOR TABLETS & PHONES
+   ========================================== */
+@media (max-width: 850px) {
+  .split-netflix-container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .photo-display-panel {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+  }
+}
+
+/* ==========================================
+   UPDATED: 3-LINE SEQUENTIAL TRANSITION STYLES
+   ========================================== */
+#interimMessageStage {
+  position: fixed;
+  inset: 0;
+  background: #0b0b0b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#interimMessageStage.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Base style for each line */
+.interim-line {
+  position: absolute; /* Stacked directly on top of each other structurally */
+  font-size: 2rem;
+  font-style: italic;
+  color: #ffd1dc;
+  text-align: center;
+  max-width: 650px;
+  padding: 0 20px;
+  line-height: 1.6;
+  text-shadow: 0 0 15px rgba(255, 209, 220, 0.3);
+  
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Active transition handles */
+.interim-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   THE JOURNAL / MEMOIR SCREEN DESIGN
+   ========================================== */
+.final-letter-stage {
+  min-height: 100vh;
+  padding: 120px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.journal-canvas {
+  max-width: 680px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  padding-left: 30px;
+  /* An elegant vertical timeline line anchor running down the left side */
+  border-left: 2px dashed rgba(255, 209, 220, 0.2); 
+}
+
+.journal-header {
+  margin-bottom: 45px;
+}
+
+.journal-stamp {
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: #a8e6cf; /* Mint green accent */
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.journal-title {
+  font-family: "Georgia", serif;
+  font-size: 2.2rem !important;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffd1dc !important; /* Soft rose */
+  line-height: 1.3 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+.journal-body p {
+  font-family: "Georgia", serif;
+  font-size: 1.15rem !important;
+  line-height: 1.9 !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  margin-bottom: 35px !important;
+  text-shadow: none !important;
+  letter-spacing: 0.2px;
+}
+
+/* Emphasizes the first letter slightly for an editorial look */
+.journal-body p:first-of-type::first-letter {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #a8e6cf;
+  float: left;
+  margin-right: 8px;
+  line-height: 1;
+}
+
+.journal-signoff {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.signoff-tag {
+  font-family: monospace;
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  margin-bottom: 8px !important;
+  letter-spacing: 1px;
+}
+
+.signoff-name {
+  font-family: "Georgia", serif;
+  font-size: 1.3rem !important;
+  font-style: italic;
+  color: #ffd1dc !important;
+  margin: 0 !important;
+}
+
+/* Mobile Responsiveness tuning */
+@media (max-width: 600px) {
+  .journal-canvas {
+    padding-left: 20px;
+    margin: 0 10px;
+  }
+  .journal-title {
+    font-size: 1.75rem !important;
+  }
+  .journal-body p {
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial";
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: Arial;
+  background: radial-gradient(circle at top, #a8e6cf22, transparent 50%),
+              radial-gradient(circle at bottom, #ffd1dc22, transparent 50%),
+              #0b0b0b;
+}
+
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 60%);
+  animation: pulse 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+/* ==========================================
+   SECTIONS & ACCENT TEXT
+   ========================================== */
+.section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.section:not(.hero) {
+  display: none;
+}
+
+.section.memory {
+  display: flex;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #a8e6cf;
+}
+
+h2 {
+  color: #ffd1dc;
+  margin-bottom: 20px;
+  font-size: 5rem;
+}
+
+h3 {
+  color: #ffd1dc;
+  margin-bottom: 20px;
+  font-size: 4rem;
+}
+
+/* ==========================================
+   FADE & TRANSITION ANIMATIONS
+   ========================================== */
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s forwards;
+}
+
+.delay { animation-delay: 0.5s; }
+.delay2 { animation-delay: 1s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* INTERACTION BUTTON */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #a8e6cf;
+  color: black;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* ==========================================
+   OUR STORY NARRATIVE HEADER
+   ========================================== */
+.story h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.story p {
+  font-size: 1.35rem;
+  line-height: 1.8;
+  max-width: 750px;
+  margin: 0 auto 25px auto;
+  color: #f5f5f5;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================
+   NETFLIX ENTER INTRO SCREEN
+   ========================================== */
+#netflixIntro {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: introOut 5s forwards;
+}
+
+.logo {
+  font-size: 4rem;
+  letter-spacing: 12px;
+  color: #a8e6cf;
+  text-shadow: 0 0 20px rgba(168,230,207,0.4);
+  animation: logoZoom 2.5s ease-out;
+}
+
+@keyframes logoZoom {
+  from {
+    transform: scale(1.4);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes introOut {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* MEMORY REVEAL TRANSITION TRIGGER */
+.memory {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: 1.2s ease;
+}
+
+.memory.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================
+   SPLIT 1:1 PHOTO & INTERACTIVE EPISODES
+   ========================================== */
+.split-netflix-container {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 40px;
+  width: 100%;
+  max-width: 1050px;
+  margin: 30px auto;
+  align-items: start;
+}
+
+/* LEFT COLUMN: FIXED POSITION PHOTO PANEL */
+.photo-display-panel {
+  width: 400px;
+  height: 400px;
+  position: sticky;
+  top: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+}
+
+.photo-display-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+/* Photo Swap Animation Frame Target */
+.photo-display-panel img.swapping {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+/* RIGHT COLUMN: SCROLLABLE LIST ROW STRUCTURE */
+.episodes-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.episode-card {
+  background: rgba(20, 20, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.episode-card:hover {
+  background: rgba(32, 32, 32, 0.9);
+  border-color: rgba(168, 230, 207, 0.4);
+}
+
+/* Card Selection Active Colors */
+.episode-card.active {
+  background: rgba(35, 35, 35, 0.95);
+  border-color: #a8e6cf;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.ep-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.ep-number {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease;
+}
+
+.episode-card.active .ep-number {
+  color: #a8e6cf;
+}
+
+.ep-title-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ep-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.ep-date {
+  font-size: 0.85rem;
+  color: #ffd1dc;
+  margin-top: 4px;
+}
+
+.ep-arrow {
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+  transition: transform 0.4s ease;
+}
+
+.ep-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.ep-body p {
+  padding: 0 20px 20px 64px !important;
+  color: #b5b5b5 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+}
+
+.episode-card.active .ep-body {
+  max-height: 300px;
+}
+
+.episode-card.active .ep-arrow {
+  transform: rotate(180deg);
+  color: #a8e6cf;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINT FOR TABLETS & PHONES
+   ========================================== */
+@media (max-width: 850px) {
+  .split-netflix-container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .photo-display-panel {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+  }
+}
+
+/* ==========================================
+   UPDATED: 3-LINE SEQUENTIAL TRANSITION STYLES
+   ========================================== */
+#interimMessageStage {
+  position: fixed;
+  inset: 0;
+  background: #0b0b0b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#interimMessageStage.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Base style for each line */
+.interim-line {
+  position: absolute; /* Stacked directly on top of each other structurally */
+  font-size: 2rem;
+  font-style: italic;
+  color: #ffd1dc;
+  text-align: center;
+  max-width: 650px;
+  padding: 0 20px;
+  line-height: 1.6;
+  text-shadow: 0 0 15px rgba(255, 209, 220, 0.3);
+  
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Active transition handles */
+.interim-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   THE JOURNAL / MEMOIR SCREEN DESIGN
+   ========================================== */
+.final-letter-stage {
+  min-height: 100vh;
+  padding: 120px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.journal-canvas {
+  max-width: 680px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  padding-left: 30px;
+  /* An elegant vertical timeline line anchor running down the left side */
+  border-left: 2px dashed rgba(255, 209, 220, 0.2); 
+}
+
+.journal-header {
+  margin-bottom: 45px;
+}
+
+.journal-stamp {
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: #a8e6cf; /* Mint green accent */
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.journal-title {
+  font-family: "Georgia", serif;
+  font-size: 2.2rem !important;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffd1dc !important; /* Soft rose */
+  line-height: 1.3 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+.journal-body p {
+  font-family: "Georgia", serif;
+  font-size: 1.15rem !important;
+  line-height: 1.9 !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  margin-bottom: 35px !important;
+  text-shadow: none !important;
+  letter-spacing: 0.2px;
+}
+
+/* Emphasizes the first letter slightly for an editorial look */
+.journal-body p:first-of-type::first-letter {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #a8e6cf;
+  float: left;
+  margin-right: 8px;
+  line-height: 1;
+}
+
+.journal-signoff {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.signoff-tag {
+  font-family: monospace;
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  margin-bottom: 8px !important;
+  letter-spacing: 1px;
+}
+
+.signoff-name {
+  font-family: "Georgia", serif;
+  font-size: 1.3rem !important;
+  font-style: italic;
+  color: #ffd1dc !important;
+  margin: 0 !important;
+}
+
+/* Mobile Responsiveness tuning */
+@media (max-width: 600px) {
+  .journal-canvas {
+    padding-left: 20px;
+    margin: 0 10px;
+  }
+  .journal-title {
+    font-size: 1.75rem !important;
+  }
+  .journal-body p {
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+  }
+}}

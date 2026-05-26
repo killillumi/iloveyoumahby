@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>209 Days With You</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="netflixIntro">
+    <div class="logo">209 DAYS</div>
+  </div>
+
+  <canvas id="stars"></canvas>
+  
+  <audio id="bgMusic" loop>
+    <source src="Photograph.mp3" type="audio/mp3">
+  </audio>
+
+  <section class="section hero">
+    <h1 class="fade">209 Days With You</h1>
+    <p class="fade delay" style="color: #fff; margin-top: 15px;">
+      Some days feel small in number… but endless in meaning.
+    </p>
+    <button onclick="startNetflix()">Start</button>
+  </section>
+
+  <div id="interimMessageStage">
+    <div class="interim-line" id="line1">Every day spent with you meant something.</div>
+    <div class="interim-line" id="line2">Through all the smiles and all the noise...</div>
+    <div class="interim-line" id="line3">I'm so incredibly glad that you were the best part of my story.</div>
+  </div>
+
+  <section class="section story">
+    <h2 class="fade">Our Story</h2>
+    <p class="fade delay" style="color: #fff; max-width: 600px; margin-bottom: 15px;">
+      209 days may not sound like forever, but in these days I found laughter,
+      comfort, and someone I genuinely care about.
+    </p>
+    <p class="fade delay2" style="color: #fff; max-width: 600px;">
+      I know we had misunderstandings… and I’m sorry for the times I hurt you.
+      I’m still learning how to love better, with patience and understanding.
+    </p>
+  </section>
+
+<section class="section story memory">
+  <h2>Episodes of Us</h2>
+  
+  <div class="split-netflix-container">
+    <div class="photo-display-panel">
+      <img id="episodeViewer" src="1.jpeg" alt="Episode Memory">
+    </div>
+
+    <div class="episodes-column">
+      
+<div class="episode-card" data-photo="1.jpeg" onclick="setActiveEpisode(this)">
+  <div class="ep-header">
+    <span class="ep-number">E01</span>
+    <div class="ep-title-group">
+      <span class="ep-title">How I Met You</span>
+      <span class="ep-date">August 10, 2024</span>
+    </div>
+    <span class="ep-arrow">▼</span>
+  </div>
+  <div class="ep-body">
+    <p>This is where it all began. This where our path crossed. One of the biggest mistake, but also the best mistake! Na buti nalang pala sinugal ko kung anong mayroon sakin mapasakin ka lang.</p>
+  </div>
+</div>
+
+      <div class="episode-card" data-photo="2.jpeg" onclick="setActiveEpisode(this)">
+        <div class="ep-header">
+          <span class="ep-number">E02</span>
+          <div class="ep-title-group">
+            <span class="ep-title">1st Meet</span>
+            <span class="ep-date">August 23, 2025</span>
+          </div>
+          <span class="ep-arrow">▼</span>
+        </div>
+        <div class="ep-body">
+          <p>The moment reality caught up to the anticipation. Fist meet, first hug, first kiss. This is the moment that I felt special for you. Nagsabay tayong umuwi, first time kong mahagkan ka sa mga braso ko, first time kong maging komportable sa tabi mo.</p>
+        </div>
+      </div>
+
+      <div class="episode-card" data-photo="3.jpg" onclick="setActiveEpisode(this)">
+        <div class="ep-header">
+          <span class="ep-number">E03</span>
+          <div class="ep-title-group">
+            <span class="ep-title">1st Date</span>
+            <span class="ep-date">November 9, 2025</span>
+          </div>
+          <span class="ep-arrow">▼</span>
+        </div>
+        <div class="ep-body">
+          <p>A formal step into something beautiful. At this moment di ako makapaniwala, yung babaeng tinatago-tago ko eh kasama ko nang nagdedate ngayon. We sat on the shore, you hugged me on your chest, you made me feel that everything is worth to give up makasama ka lang. this is the moment that you willingly kissed me with no regression.</p>
+        </div>
+      </div>
+
+      <div class="episode-card" data-photo="4.jpg" onclick="setActiveEpisode(this)">
+        <div class="ep-header">
+          <span class="ep-number">E04</span>
+          <div class="ep-title-group">
+            <span class="ep-title">1st Outing</span>
+            <span class="ep-date">December 20, 2025</span>
+          </div>
+          <span class="ep-arrow">▼</span>
+        </div>
+        <div class="ep-body">
+          <p>Finally! A moment with you without interruptions. Long hugs, long kiss, carried you on my back. How I wish to be like that all the time.</p>
+        </div>
+      </div>
+
+      <div class="episode-card" data-photo="5.jpg" onclick="setActiveEpisode(this)">
+        <div class="ep-header">
+          <span class="ep-number">E05</span>
+          <div class="ep-title-group">
+            <span class="ep-title">Departure</span>
+            <span class="ep-date">December 27, 2025</span>
+          </div>
+          <span class="ep-arrow">▼</span>
+        </div>
+        <div class="ep-body">
+          <p>This is where we depart. How sad it is to reminisce na last meet na pala natin yun. Iloveyou!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- THE CHRONICLE CLOSURE: FINAL HEARTFELT LETTER -->
+  <section class="section final-letter-stage">
+    <div class="journal-canvas">
+      
+      <div class="journal-header">
+        <span class="journal-stamp">TO KEEP</span>
+        <h2 class="journal-title">A few things I need to tell you...</h2>
+      </div>
+
+      <div class="journal-body">
+        <p>
+          It’s strange how a specific block of time can completely rewrite your routine. It's strange how a mistake can be the greatest turning point. Before these 209 days, things were different. Then you happened, and suddenly my calendar had landmarks—days that were no longer just dates, but moments where I laughed harder than I had in a long time, or felt a type of comfort that’s incredibly rare to find.
+        </p>
+        
+        <p>
+          We weren't perfect. I know we had our misunderstandings, our miscommunications, and the quiet moments where things felt heavy. I am genuinely sorry for the times I fell short or caused you pain. I’ve realized that learning to love and care for someone properly isn't an overnight switch—it takes a level of patience and understanding that I’m still actively discovering day by day.
+        </p>
+
+        <p>
+          But looking back, the noise fades out and only the genuine parts remain. Thank you for sharing these chapters with me. Thank you for the perspective, the quiet moments, and for being someone who left an indelible mark on my world. No matter how the distance changes things or where our paths split from this point on, a real piece of my care stays with you. 
+        </p>
+
+        <p>
+          Love, you are the greatest thing for me, you made me feel special and welcoming. At least for me you are the one I love the most. Join me for the next chapters, next episodes, di kita bibiguin. I LOVE YOU THE MOST!
+        </p>
+
+        <div class="journal-signoff">
+          <p class="signoff-tag">HAPPY 7TH MONTHSARY LOVE.</p>
+          <p class="signoff-name">— dahby </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
